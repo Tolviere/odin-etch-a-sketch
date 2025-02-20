@@ -1,0 +1,18 @@
+.grid-container {
+    display: flex;
+    width: 500px;
+    height: 500px;
+}
+
+.grid-row {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.grid-cell {
+    flex: 1;
+    box-sizing: border-box;
+    border: 2px solid black;
+}
+
