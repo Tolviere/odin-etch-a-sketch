@@ -4,7 +4,7 @@
     height: 500px;
 }
 
-.grid-row {
+.grid-column {
     display: flex;
     flex-direction: column;
     flex: 1;
@@ -12,7 +12,10 @@
 
 .grid-cell {
     flex: 1;
+    background-color: rgb(0, 255, 255);
+}
+
+.grid-container, .grid-cell {
     box-sizing: border-box;
     border: 2px solid black;
 }
-
