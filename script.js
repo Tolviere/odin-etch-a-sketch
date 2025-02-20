@@ -7,6 +7,7 @@ function createGrid() {
         for (let j = 0; j < 4; j++) {
             let cell = document.createElement('div');
             cell.classList.add("grid-cell");
+            cell.setAttribute("data-cell-opacity", 0.2);
             column.appendChild(cell);
         }
 
@@ -17,13 +18,20 @@ function createGrid() {
 gridContainer.addEventListener("mouseenter", addCellColor, true);
 
 function addCellColor(event) {
-    if (event.target.className === ("grid-cell")) {
-        event.target.style.backgroundColor = getRandomColor();
+    let cell = event.target;
+
+    if (cell.className === ("grid-cell")) {
+        cell.style.backgroundColor = `rgb(${getRandomColor()} / ${getCellOpacity(cell)}`;
     }
 }
 
 function getRandomColor() {
-    return `rgb(${Math.random() * 255}, ${Math.random() * 255}, ${Math.random() * 255})`;
+    return `${Math.random() * 255} ${Math.random() * 255} ${Math.random() * 255}`;
+}
+
+function getCellOpacity(cell) {
+    cell.setAttribute("data-cell-opacity", cell.getAttribute("data-cell-opacity") * 1.1);
+    return cell.getAttribute("data-cell-opacity");
 }
 
 createGrid();
