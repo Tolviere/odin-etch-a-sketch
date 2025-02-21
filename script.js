@@ -15,6 +15,10 @@ createGrid();
 centerGrid();
 
 function createGrid(size = 4) {
+    if (Number.isNaN(size)){
+        size = 4;
+    } 
+
     for (let i = 0; i < size; i++) {
         let column = document.createElement('div');
         column.classList.add('grid-column');
