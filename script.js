@@ -1,5 +1,10 @@
 const gridContainer = document.querySelector('.grid-container');
 
+gridContainer.addEventListener("mouseenter", addCellColor, true);
+
+createGrid();
+centerGrid();
+
 function createGrid() {
     for (let i = 0; i < 4; i++) {
         let column = document.createElement('div');
@@ -14,8 +19,6 @@ function createGrid() {
         gridContainer.appendChild(column);
     }
 }
-
-gridContainer.addEventListener("mouseenter", addCellColor, true);
 
 function addCellColor(event) {
     let cell = event.target;
@@ -34,4 +37,7 @@ function getCellOpacity(cell) {
     return cell.getAttribute("data-cell-opacity");
 }
 
-createGrid();
+function centerGrid() {
+    const headerContainer = document.querySelector('.header-container');
+    gridContainer.style = `margin-bottom: ${headerContainer.offsetHeight}px;`;
+}
