@@ -2,14 +2,23 @@ const gridContainer = document.querySelector('.grid-container');
 
 gridContainer.addEventListener("mouseenter", addCellColor, true);
 
+const form = document.querySelector('form');
+const input = document.querySelector('input');
+
+form.addEventListener('submit', e => {
+   gridContainer.innerHTML = '';
+   createGrid(+input.value); 
+   e.preventDefault();
+});
+
 createGrid();
 centerGrid();
 
-function createGrid() {
-    for (let i = 0; i < 4; i++) {
+function createGrid(size = 4) {
+    for (let i = 0; i < size; i++) {
         let column = document.createElement('div');
         column.classList.add('grid-column');
-        for (let j = 0; j < 4; j++) {
+        for (let j = 0; j < size; j++) {
             let cell = document.createElement('div');
             cell.classList.add("grid-cell");
             cell.setAttribute("data-cell-opacity", 0.2);
