@@ -5,6 +5,17 @@ gridContainer.addEventListener("mouseenter", addCellColor, true);
 const form = document.querySelector('form');
 const input = document.querySelector('input');
 
+let canDraw = false;
+
+gridContainer.addEventListener("mousedown", (e) => {
+    canDraw = true;
+    if (e.target.className === "grid-cell") addCellColor(e);
+});
+
+gridContainer.addEventListener("mouseup", () => {
+    canDraw = false;
+});
+
 form.addEventListener('submit', e => {
    gridContainer.innerHTML = '';
    createGrid(+input.value); 
@@ -15,13 +26,15 @@ createGrid();
 centerGrid();
 
 function createGrid(size = 4) {
+
     if (Number.isNaN(size)){
         size = 4;
-    } 
+    }
 
     for (let i = 0; i < size; i++) {
         let column = document.createElement('div');
         column.classList.add('grid-column');
+
         for (let j = 0; j < size; j++) {
             let cell = document.createElement('div');
             cell.classList.add("grid-cell");
@@ -45,7 +58,7 @@ function createGrid(size = 4) {
 function addCellColor(event) {
     let cell = event.target;
 
-    if (cell.className === ("grid-cell")) {
+    if (canDraw && cell.className === ("grid-cell")) {
         cell.style.backgroundColor = `rgb(${getRandomColor()} / ${getCellOpacity(cell)}`;
     }
 }
