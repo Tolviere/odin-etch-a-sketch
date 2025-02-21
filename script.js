@@ -22,10 +22,15 @@ function createGrid(size = 4) {
             let cell = document.createElement('div');
             cell.classList.add("grid-cell");
             cell.setAttribute("data-cell-opacity", 0.2);
+
             if (size > 25) {
                 cell.style.border = `1px solid black`;
                 gridContainer.style.border = `1px solid black`;
+            } else {
+                cell.style.border = `2px solid black`;
+                gridContainer.style.border = `2px solid black`;
             }
+
             column.appendChild(cell);
         }
 
